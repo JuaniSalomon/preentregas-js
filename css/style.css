@@ -1,0 +1,17 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+#carrito {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#total {
+  font-weight: bold;
+}
