@@ -6,7 +6,7 @@ const availableProducts = [
 
 let total = 0;
 
-// function to get cart from local storage and parse it"
+// function to get cart from local storage and parse it
 function getCart() {
   const cartStringify = localStorage.getItem("cart");
   const cart = cartStringify ? JSON.parse(cartStringify) : [];
@@ -39,6 +39,7 @@ function updateCart() {
     const { name, price } = product;
     const productElement = document.createElement("div");
     productElement.textContent = `${name} - $${price}`;
+
     cartElement.appendChild(productElement);
   });
 
