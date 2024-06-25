@@ -2,10 +2,6 @@ body {
   font-family: Arial, sans-serif;
 }
 
-h2 {
-  font-weight: bold;
-}
-
 #cart {
   border: 1px solid #ccc;
   padding: 10px;
@@ -14,4 +10,14 @@ h2 {
 
 #total {
   font-weight: bold;
+}
+
+.product-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-left: 10px;
 }

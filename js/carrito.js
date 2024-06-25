@@ -13,16 +13,30 @@ function getCart() {
   return cart;
 }
 
+// function to save cart to local storage
+function saveCart(cart) {
+  const cartStringify = JSON.stringify(cart);
+  localStorage.setItem("cart", cartStringify);
+}
+
 function addProduct(id) {
   const product = availableProducts.find((prod) => prod.id === id);
   const cart = getCart();
   if (product) {
     cart.push(product);
-    // stringify array and save it in local storage
-    const cartStringify = JSON.stringify(cart);
-    localStorage.setItem("cart", cartStringify);
+    saveCart(cart);
     total += product.price;
+    updateCart();
+  }
+}
 
+function removeProduct(index) {
+  const cart = getCart();
+  const product = cart[index];
+  if (product) {
+    cart.splice(index, 1);
+    saveCart(cart);
+    total -= product.price;
     updateCart();
   }
 }
@@ -30,15 +44,25 @@ function addProduct(id) {
 function updateCart() {
   const cartElement = document.getElementById("cart");
   const totalElement = document.getElementById("total");
-  // get cart from local storage and parse it
   const cart = getCart();
 
   cartElement.innerHTML = "";
 
-  cart.forEach((product) => {
+  cart.forEach((product, index) => {
     const { name, price } = product;
+
     const productElement = document.createElement("div");
-    productElement.textContent = `${name} - $${price}`;
+    productElement.className = "product-item";
+
+    const productText = document.createElement("span");
+    productText.textContent = `${name} - $${price}`;
+
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Eliminar";
+    removeButton.addEventListener("click", () => removeProduct(index));
+
+    productElement.appendChild(productText);
+    productElement.appendChild(removeButton);
 
     cartElement.appendChild(productElement);
   });
